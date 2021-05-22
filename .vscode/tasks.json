@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ test_main",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "${fileDirname}/*.cpp",
+                "-o",
+                "${fileDirname}/test_main.out",
+                "-isystem",
+                "${HOME}/.local/include",
+                "-L",
+                "${HOME}/.local/lib",
+                "-lCatch2Main",
+                "-lCatch2"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: /usr/bin/g++"
+        }
+    ]
+}
