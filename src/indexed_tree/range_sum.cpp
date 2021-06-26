@@ -18,7 +18,8 @@ range_sum(int* array, std::size_t begin, std::size_t end)
     return sum;
 }
 
-void IndexedTreeRangeSum::update(int pos, int value)
+void
+IndexedTreeRangeSum::update_indexed_tree(int pos, int value)
 {
     pos += 1;
     for (; pos < std::size(indexed_tree_); pos += pos & (-pos))
@@ -26,6 +27,14 @@ void IndexedTreeRangeSum::update(int pos, int value)
         indexed_tree_[pos] += value;
     }
 }
+
+
+void
+IndexedTreeRangeSum::update(std::int32_t pos, std::int32_t value)
+{
+    update_indexed_tree(pos, value - p_origin_data[pos]);
+}
+
 
 std::int32_t
 IndexedTreeRangeSum::range_sum(int first, int last)
