@@ -1,5 +1,6 @@
 #include "range_sum.hpp"
 
+#include <iostream>
 
 #include <catch2/catch_all.hpp>
 
@@ -19,11 +20,14 @@ TEST_CASE("test_indexed_tree_range_sum", "range_sum")
 {
     int data[] = {0, 2, 1, 4, 6, -1, 5, -32, 0, 1};
 
-    IndexedTreeRangeSum<1000>::init(data);
+    IndexedTreeRangeSum rangeSum(data);
 
-    IndexedTreeRangeSum<1000>::update(5, 3); // -1 -> 3
+    rangeSum.update(5, 3); // -1 -> 3
 
-    int res = IndexedTreeRangeSum<1000>::range_sum(4, 7); // 6 + 3 + 5 + -32
+    int res = rangeSum.range_sum(4, 7); // 6 + 3 + 5 + -32
+
+    std::cout << "prefix sum of index 0 = " << rangeSum.prefix_sum(0) << "\n";
+    std::cout << "prefix sum of index 4 = " << rangeSum.prefix_sum(4) << "\n";
 
     CHECK(res == -18);
 }
