@@ -14,10 +14,10 @@ int
 range_sum(int* array, std::size_t first, std::size_t last);
 
 
-class IndexedTreeRangeSum{
+class BinaryIndexedTreeRangeSum{
 public:
     template <std::size_t DataSize>
-    IndexedTreeRangeSum(std::int32_t (&data)[DataSize]);
+    BinaryIndexedTreeRangeSum(std::int32_t (&data)[DataSize]);
 
     void update(std::int32_t pos, std::int32_t value);
 
@@ -36,7 +36,7 @@ private:
 
 
 template <std::size_t DataSize>
-IndexedTreeRangeSum::IndexedTreeRangeSum(std::int32_t (&data)[DataSize])
+BinaryIndexedTreeRangeSum::BinaryIndexedTreeRangeSum(std::int32_t (&data)[DataSize])
 : data_size_(DataSize)
 , indexed_tree_(DataSize + 1, 0)
 , p_origin_data(data)

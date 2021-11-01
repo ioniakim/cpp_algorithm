@@ -1,4 +1,5 @@
 #include "range_sum.hpp"
+#include "gcd_range_sum.hpp"
 
 #include <iostream>
 
@@ -16,11 +17,11 @@ TEST_CASE("test_naive_range_sum", "range_sum")
 }
 
 
-TEST_CASE("indexed_tree_prefix_sum", "range_sum")
+TEST_CASE("indexed_tree_prefix_sum", "BIT")
 {
     int data[] = {2, 1, 4, 6, -1, 5, -32, 0, 1};
 
-    IndexedTreeRangeSum range_sum(data);
+    BinaryIndexedTreeRangeSum range_sum(data);
 
     CHECK(2 == range_sum.prefix_sum(1));
     CHECK(3 == range_sum.prefix_sum(2));
@@ -46,11 +47,11 @@ TEST_CASE("indexed_tree_prefix_sum", "range_sum")
 }
 
 
-TEST_CASE("indexed_tree_range_sum", "range_sum")
+TEST_CASE("indexed_tree_range_sum", "BIT")
 {
     int data[] = {2, 1, 4, 6, -1, 5, -32, 0, 1};
 
-    IndexedTreeRangeSum range_sum(data);
+    BinaryIndexedTreeRangeSum range_sum(data);
 
     range_sum.update(4, 3); // -1 -> 3
 
@@ -62,4 +63,21 @@ TEST_CASE("indexed_tree_range_sum", "range_sum")
     CHECK(res == -18);
 
     CHECK(range_sum.prefix_sum(1) == range_sum.range_sum(0, 1));
+}
+
+
+TEST_CASE("gcd_range_sum", "BIT")
+{
+    SECTION("simple test"){
+        int input[] = {3, 4, 3};
+
+        GcdRangeSum<100>::init(input);
+
+        CHECK(13 == GcdRangeSum<100>::sum(1, 2));
+        CHECK(18 == GcdRangeSum<100>::sum(1, 3));
+        CHECK(5 == GcdRangeSum<100>::sum(3, 3));
+        GcdRangeSum<100>::update(1, 4);
+        CHECK(21 == GcdRangeSum<100>::sum(1, 3));
+        CHECK(16 == GcdRangeSum<100>::sum(1, 2));
+    }
 }
