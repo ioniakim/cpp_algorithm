@@ -1,9 +1,13 @@
+#define CATCH_CONFIG_MAIN
+
 #include "range_sum.hpp"
 
 #include <iostream>
 
-#include <catch2/catch_all.hpp>
+#include <catch2/catch.hpp>
 
+// Compile test
+// g++ -std=c++17 -Wall -I ~/.local/include -o test.out *.cpp
 
 TEST_CASE("test_naive_range_sum", "range_sum")
 {

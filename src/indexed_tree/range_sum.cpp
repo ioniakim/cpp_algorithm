@@ -21,7 +21,8 @@ range_sum(int* array, std::size_t begin, std::size_t end)
 void IndexedTreeRangeSum::update(int pos, int value)
 {
     pos += 1;
-    for (; pos < std::size(indexed_tree_); pos += pos & (-pos))
+    int size = static_cast<int>(std::size(indexed_tree_));
+    for (; pos < size; pos += pos & (-pos))
     {
         indexed_tree_[pos] += value;
     }
